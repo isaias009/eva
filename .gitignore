@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development env
+.env
+
+# Flask related
+instance/
+webapp.egg-info/
+db.sqlite
+db.sqlite3
+*.pyc
+*.pyo
+__pycache__/
+.env
+
+# IDE (e.g. PyCharm) files
+.idea/
+
+# Editor (e.g. VSCode) files
+.vscode/
+
+# Python virtual environment
+venv/

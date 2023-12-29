@@ -1,0 +1,4 @@
+1.- crear un entorno virtual o instalarlo en la maquina
+2.- clonar el proyecto desde github ""
+3.- ejecutar "pip install -r requirements.txt" en la carpeta de proyecto
+4.- una vez instalado los paquetes ejecutar "python app.py"

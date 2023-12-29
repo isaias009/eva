@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">
+  <title>Calculadora</title>
+</head>
+<body>
+
+  {% if exp %}
+    <div class="contenedor">
+      <h2 class="titulo">Evaluador <i class="fa-solid fa-calculator"></i></h2>
+      
+      <p class="op">{{exp}}</p>
+      
+      <div class="steps">
+        {% for step in steps %}
+          <div class="step">
+            <p class="pos">{{step.index}}</p>
+            <div class="resto">
+              <p class="operacion">{{step.operation}} =</p>
+              <p class="res">{{step.res}}</p>
+              {% if step.int %}
+                <p><span class="type">entero</span></p>
+              {% else %}
+                <p><span class="type">double</span></p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="total">Total: {{result}}</div>
+    </div>
+  {% else %}
+    <div id="calculator">
+      <h2 class="titulo">Evaluador <i class="fa-solid fa-calculator"></i></h2>
+
+      <form method="post">
+        <input type="text" id="display" name="exp" autocomplete="off" readonly />
+
+        <div class="botones">
+          <div class="bloque">
+            <div class="res">
+              <button type="button" onclick="deleteLastCharacter()"><i class="fa-solid fa-arrow-left"></i></button>
+              <button type="button" onclick="clearDisplay()"><i class="fa-solid fa-trash-can"></i></button>
+              <button class="eq" type="submit">=</button>
+            </div>
+    
+            <div class="numeros">
+              <button type="button" onclick="addToDisplay('1')">1</button>
+              <button type="button" onclick="addToDisplay('2')">2</button>
+              <button type="button" onclick="addToDisplay('3')">3</button>
+              <button type="button" onclick="addToDisplay('4')">4</button>
+              <button type="button" onclick="addToDisplay('5')">5</button>
+              <button type="button" onclick="addToDisplay('6')">6</button>
+              <button type="button" onclick="addToDisplay('7')">7</button>
+              <button type="button" onclick="addToDisplay('8')">8</button>
+              <button type="button" onclick="addToDisplay('9')">9</button>
+              <button type="button" onclick="addToDisplay('0')">0</button>
+              <button type="button" onclick="addToDisplay('(')">(</button>
+              <button type="button" onclick="addToDisplay(')')">)</button>
+            </div>
+          </div>
+
+          <div class="signos">
+            <button class="signo" type="button" onclick="addToDisplay('+')"><i class="fa-solid fa-plus"></i></button>
+            <button class="signo" type="button" onclick="addToDisplay('-')"><i class="fa-solid fa-minus"></i></button>
+            <button class="signo" type="button" onclick="addToDisplay('*')"><i class="fa-solid fa-xmark"></i></button>
+            <button class="signo" type="button" onclick="addToDisplay('/')"><i class="fa-solid fa-divide"></i></button>
+            <button type="button" onclick="addToDisplay('.')">.</button>
+          </div>
+        </div>
+        
+        
+      </form>
+    </div>
+
+    <script>
+      function addToDisplay(value) {
+        document.getElementById('display').value += value;
+      }
+
+      function deleteLastCharacter() {
+        var displayValue = document.getElementById('display').value;
+        document.getElementById('display').value = displayValue.slice(0, -1);
+      }
+
+      function clearDisplay() {
+        document.getElementById('display').value = '';
+      }
+    </script>
+  {% endif %}
+
+</body>
+</html>
